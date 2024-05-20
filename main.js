@@ -1,74 +1,77 @@
-// დაწერე ფუნქცია, რომელიც მიიღებს a და b
-// პარამეტრებს და დააბრუნებს ტექსტს
-// “ტოლია” თუ a უდრის b-ს, ხოლო
-// წინააღმდეგ შემთხვევაში, დააბრუნებს “არ
-// არის ტოლი”
-// ● გაითვალისწინე, რომ a და b ყოველთვის
-// ერთი და იგივე ტიპის არ არის
+// მოცემულია მასივი [{name: 'Temo', age: 25},
+// {name: 'Lasha', age: 21}, {name: 'Ana', age: 28}]
+// ● დაწერე ფუნქცია, რომელიც პარამეტრად
+// მიიღებს user - ების მასივს და დააბრუნებს
+// ყველაზე პატარა ასაკის მქონე ადამიანის
+// სახელს
 
-function compareNumbs(a, b) {
-  if (typeof a !== typeof b) {
-    return "ვერ შევადარებთ";
-  } else if (a == b) {
-    return "ტოლია";
-  } else {
-    return "არ არის ტოლი";
+function youngestInTheGroup(users) {
+  if (users.length === 0) {
+    return null;
   }
+  let youngestUser = users[0];
+  for (let i = 1; i < users.length; i++) {
+    if (users[i].age < youngestUser.age) {
+      youngestUser = users[i];
+    }
+  }
+  return youngestUser.name;
 }
-console.log(compareNumbs(3, 5));
-console.log(compareNumbs(66, 33));
-console.log(compareNumbs(22, 54));
-console.log(compareNumbs("ajsj", 5));
-console.log(compareNumbs(5, 5));
+const users = [
+  { name: "Temo", age: 25 },
+  { name: "Lasha", age: 21 },
+  { name: "Ana", age: 28 },
+];
+
+console.log(youngestInTheGroup(users));
 
 // დაწერე ფუნქცია, რომელიც პარამეტრად
-// მიიღებს ტემპერატურას ფარენჰეიტებში და
-// დააბრუნებს ტემპერატურას ცელსიუსში
-// ● თუ პარამეტრი არ არის რიცხვითი მონაცემი
-// დააბრუნე - false
+// მიიღებს user ობიექტს და დააბრუნებს
+// იგივე მნიშვნელობების მქონე ახალ
+// (განსხვავებულ) ობიექტს, მოცემულია მასივი user=[{name: 'Temo', age: 25},
+// {name: 'Lasha', age: 21}, {name: 'Ana', age: 28}]
 
-function temperatureToCelsius(temperature) {
-  if (typeof temperature !== "number") {
-    return false;
-  }
-  return (temperature - 32) * (5 / 9);
+function cloneUsers(users) {
+  return users.map((users) => ({ ...user }));
 }
-console.log(temperatureToCelsius(100));
-console.log(temperatureToCelsius(244));
-console.log(temperatureToCelsius(44));
-console.log(temperatureToCelsius("dds"));
+const users = [
+  { name: "Temo", age: 25 },
+  { name: "Lasha", age: 21 },
+  { name: "Ana", age: 28 },
+];
+console.log(cloneUsers(users));
 
-// დაწერე ფუნქცია, რომელიც პარამეტრად
-// მიიღებს a (პირველი რიცხვი), b (მეორე
-// რიცხვი) და operation (+, -, *, /) და
-// დააბრუნებს ახალ მნიშვნელობას,
-// რომელიც მიიღება ამ ორ რიცხვზე operation
-// ცვლადში განსაზღვრული ოპერაციით
-// ● თუ a და b არ არიან რიცხვები, ან თუ
-// operation ცვლადში არის უცნობი, ოპერაცია
-// დააბრუნე - false
+// დაწერე პროგრამა, სადაც ორი a და b
+// მომხმარებლები აგორებენ კამათელს
+// მანამ, სანამ არ გაგორდება, რომელიც
+// უფრო ნაკლებ ცდაში გააგორებს სამიანს ის
+// არის გამარჯვებული
 
-function calculate(a, b, operation) {
-  if (
-    typeof a !== "number" ||
-    typeof b !== "number" ||
-    typeof operation !== "string"
-  ) {
-    return false;
-  }
-  if (operation === "+") {
-    return a + b;
-  } else if (operation === "-") {
-    return a - b;
-  } else if (operation === "*") {
-    return a * b;
-  } else if (operation === "/") {
-    return a / b;
+function rollDice() {
+  return Math.floor(Math.random() * 6) + 1;
+}
+function playGame() {
+  let a = 0;
+  let b = 0;
+  let aRoll, bRoll;
+
+  do {
+    aRoll = rollDice();
+    a++;
+  } while (aRoll !== 3);
+
+  do {
+    bRoll = rollDice();
+    b++;
+  } while (bRoll !== 3);
+
+  if (a < b) {
+    console.log(`მოთამაშე A არის გამარჯვებული ${a} ცდით`);
+  } else if (a > b) {
+    console.log(`მოთამაშე B არის გამარჯვებული ${b} ცდით`);
   } else {
-    return false;
+    console.log(`ფრეა ${a} ცდით`);
   }
 }
-console.log(calculate(3, 9, "*"));
-console.log(calculate(20, 45, "-"));
-console.log(calculate(10, 0, "/"));
-console.log(calculate(3, 9, "6"));
+
+playGame();
