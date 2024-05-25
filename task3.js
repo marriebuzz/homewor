@@ -6,19 +6,19 @@
 // ელემენტი - მესამე ელემენტიდან
 // დაწყებული ყველა დანარჩენის ნამრავლი
 
-// function calculateNums(n, ...numbers) {
-//   if (n <= 2 || numbers.length !== n) {
-//     return null;
-//   }
-//   const sumFirstTwo = numbers[0] + numbers[1];
-//   let rest = 1;
-//   for (let i = 2; i < numbers.length; i++) {
-//     rest *= numbers[i];
-//   }
-//   return [sumFirstTwo, rest];
-// }
-// const result = calculateNums(5, 2, 3, 4, 5, 6);
-// console.log(result);
+function calculateNums(n, ...numbers) {
+  if (n <= 2 || numbers.length !== n) {
+    return null;
+  }
+  const sumFirstTwo = numbers[0] + numbers[1];
+  let rest = 1;
+  for (let i = 2; i < numbers.length; i++) {
+    rest *= numbers[i];
+  }
+  return [sumFirstTwo, rest];
+}
+const result = calculateNums(5, 2, 3, 4, 5, 6);
+console.log(result);
 
 // დავუშვათ გვინდა ობიექტიდან წავიკითხოთ
 // შემდეგი ველი: user.banks[2].address.city.
@@ -27,18 +27,18 @@
 // ველი არ არსებობს უნდა დაბრუნდეს
 // undefined
 
-// function getCity(user) {
-//   return user?.banks?.[2]?.address?.city;
-// }
-// const user = {
-//   banks: [
-//     { address: { city: "batumi" } },
-//     { address: { city: "tbilisi" } },
-//     { address: { city: "telavi" } },
-//   ],
-// };
-// const result = getCity(user);
-// console.log(result);
+function getCity(user) {
+  return user?.banks?.[2]?.address?.city;
+}
+const user = {
+  banks: [
+    { address: { city: "batumi" } },
+    { address: { city: "tbilisi" } },
+    { address: { city: "telavi" } },
+  ],
+};
+const result = getCity(user);
+console.log(result);
 
 // დაწერე ფუნქცია, რომელიც პარამეტრად
 // მიიღებს ნებისმიერ ობიექტს და
